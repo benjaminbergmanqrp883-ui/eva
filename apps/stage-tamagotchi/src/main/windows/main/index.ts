@@ -170,7 +170,22 @@ export async function setupMainWindow(params: {
     window.setWindowButtonVisibility(false)
   }
 
-  window.on('ready-to-show', () => window!.show())
+  window.on('ready-to-show', () => {
+    // Auto-configure EVA defaults on first launch
+    window!.webContents.executeJavaScript(`
+      if (!localStorage.getItem('settings/consciousness/active-provider') || localStorage.getItem('settings/consciousness/active-provider') === '""') {
+        localStorage.setItem('settings/consciousness/active-provider', '"ollama"');
+        localStorage.setItem('settings/consciousness/active-model', '"llama3.1:8b"');
+        localStorage.setItem('settings/credentials/providers', JSON.stringify({ollama: {baseUrl: 'http://localhost:11434/v1/'}}));
+        localStorage.setItem('settings/providers/added', JSON.stringify({ollama: true}));
+        localStorage.setItem('settings/speech/active-provider', '"browser-local-audio-speech"');
+        localStorage.setItem('settings/hearing/active-provider', '"browser-local-audio-hearing"');
+        console.log('[EVA] Auto-configured Ollama + llama3.1:8b');
+        setTimeout(() => location.reload(), 500);
+      }
+    `).catch(() => {})
+    window!.show()
+  })
   window.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }

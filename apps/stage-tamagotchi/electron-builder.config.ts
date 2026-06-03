@@ -41,8 +41,8 @@ else {
 }
 
 export default {
-  appId: 'ai.moeru.airi',
-  productName: 'AIRI',
+  appId: 'ai.eva.desktop',
+  productName: 'EVA',
   directories: {
     output: 'dist',
     buildResources: 'build',
@@ -105,14 +105,14 @@ export default {
     },
   ],
   extraMetadata: {
-    name: 'ai.moeru.airi',
+    name: 'ai.eva.desktop',
     main: 'out/main/index.js',
-    homepage: 'https://airi.moeru.ai/docs/',
-    repository: 'https://github.com/moeru-ai/airi',
+    homepage: 'https://github.com/benjaminbergmanqrp883-ui/eva',
+    repository: 'https://github.com/benjaminbergmanqrp883-ui/eva',
     license: 'MIT',
   },
   win: {
-    executableName: 'airi',
+    executableName: 'eva',
     // NOTICE: Keep `channel: 'latest-${arch}'` for architecture-aware updater metadata.
     // electron-builder expands `${arch}` at publish-time (for example: `latest-x64`, `latest-arm64`),
     // and electron-updater later consumes that expanded channel to resolve platform-specific *.yml files.
@@ -207,10 +207,10 @@ export default {
     },
     extendInfo: [
       {
-        NSMicrophoneUsageDescription: 'AIRI requires microphone access for voice interaction',
+        NSMicrophoneUsageDescription: 'EVA requires microphone access for voice interaction',
       },
       {
-        NSCameraUsageDescription: 'AIRI requires camera access for vision understanding',
+        NSCameraUsageDescription: 'EVA requires camera access for vision understanding',
       },
     ],
     // For self-publishing, testing, and distribution after modified the code without access to
@@ -221,7 +221,7 @@ export default {
     hardenedRuntime: true,
     // notarize: false,
     notarize: true,
-    executableName: 'airi',
+    executableName: 'eva',
     icon: useIconFormattedMacAppIcon ? 'icon.icon' : 'icon.icns',
   },
   dmg: {
@@ -240,9 +240,9 @@ export default {
       channel: 'latest-${arch}',
     },
     category: 'Utility',
-    synopsis: 'AI VTuber/Waifu chatbot app inspired by Neuro-sama.',
-    description: 'AIRI is an AI VTuber/Waifu chatbot supporting Live2D/VRM avatars, featuring human-like interactions and modular stage-based rendering.',
-    executableName: 'airi',
+    synopsis: 'EVA 1.0 — AI desktop companion assistant.',
+    description: 'EVA is an AI desktop companion with Live2D avatar, voice chat, and customizable personality.',
+    executableName: 'eva',
     artifactName: '${productName}-${version}-linux-${arch}.${ext}',
     icon: 'build/icons/icon.png',
   },

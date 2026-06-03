@@ -288,7 +288,7 @@ export const useAiriCardStore = defineStore('airi-card', () => {
     if (cards.value.has('default'))
       return
     cards.value.set('default', newAiriCard({
-      name: 'ReLU',
+      name: 'EVA',
       version: '1.0.0',
       description: SystemPromptV2(
         t('base.prompt.prefix'),

@@ -52,6 +52,13 @@ export const useLLM = defineStore('llm', () => {
     }
 
     const builtinToolsResolver = async () => {
+      // Disable tools for local models (Ollama) — they can't handle tool calling reliably
+      const isLocalProvider = chatProvider.baseURL?.includes('localhost:11434')
+        || chatProvider.baseURL?.includes('127.0.0.1:11434')
+      if (isLocalProvider) {
+        return []
+      }
+
       await llmToolsStore.awaitPendingRegistrations()
 
       // Reverse twice so later runtime registrations win while original tool order stays stable.
